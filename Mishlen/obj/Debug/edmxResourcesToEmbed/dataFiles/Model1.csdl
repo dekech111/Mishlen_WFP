@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MichelinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MichelinEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ClientFromOrganization" EntityType="MichelinModel.ClientFromOrganization" />
+    <EntitySet Name="Order" EntityType="MichelinModel.Order" />
+    <EntitySet Name="Organization" EntityType="MichelinModel.Organization" />
+    <EntitySet Name="Product" EntityType="MichelinModel.Product" />
+    <EntitySet Name="ProductType" EntityType="MichelinModel.ProductType" />
+    <EntitySet Name="Registration" EntityType="MichelinModel.Registration" />
+    <EntitySet Name="sysdiagrams" EntityType="MichelinModel.sysdiagrams" />
+    <AssociationSet Name="FK_ClientFromOrganization_Organization" Association="MichelinModel.FK_ClientFromOrganization_Organization">
+      <End Role="Organization" EntitySet="Organization" />
+      <End Role="ClientFromOrganization" EntitySet="ClientFromOrganization" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_ClientFromOrganization" Association="MichelinModel.FK_Order_ClientFromOrganization">
+      <End Role="ClientFromOrganization" EntitySet="ClientFromOrganization" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Product" Association="MichelinModel.FK_Order_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Organization_Registration" Association="MichelinModel.FK_Organization_Registration">
+      <End Role="Registration" EntitySet="Registration" />
+      <End Role="Organization" EntitySet="Organization" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ProductType" Association="MichelinModel.FK_Product_ProductType">
+      <End Role="ProductType" EntitySet="ProductType" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ClientFromOrganization">
+    <Key>
+      <PropertyRef Name="ID_Client" />
+    </Key>
+    <Property Name="ID_Client" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Firstname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Middlename" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="id_Organization" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FIO" Type="String" Nullable="false" MaxLength="152" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="Organization" Relationship="MichelinModel.FK_ClientFromOrganization_Organization" FromRole="ClientFromOrganization" ToRole="Organization" />
+    <NavigationProperty Name="Order" Relationship="MichelinModel.FK_Order_ClientFromOrganization" FromRole="ClientFromOrganization" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="ID_Order" />
+    </Key>
+    <Property Name="ID_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_Product" Type="Int32" Nullable="false" />
+    <Property Name="id_Client" Type="Int32" Nullable="false" />
+    <Property Name="CountOrder" Type="Int32" Nullable="false" />
+    <Property Name="SumOrder" Type="Int32" Nullable="false" />
+    <Property Name="DateOrder" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="ClientFromOrganization" Relationship="MichelinModel.FK_Order_ClientFromOrganization" FromRole="Order" ToRole="ClientFromOrganization" />
+    <NavigationProperty Name="Product" Relationship="MichelinModel.FK_Order_Product" FromRole="Order" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="ID_Organization" />
+    </Key>
+    <Property Name="ID_Organization" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_Registration" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ClientFromOrganization" Relationship="MichelinModel.FK_ClientFromOrganization_Organization" FromRole="Organization" ToRole="ClientFromOrganization" />
+    <NavigationProperty Name="Registration" Relationship="MichelinModel.FK_Organization_Registration" FromRole="Organization" ToRole="Registration" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID_Product" />
+    </Key>
+    <Property Name="ID_Product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_ProductType" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CountInStrock" Type="Int32" />
+    <NavigationProperty Name="Order" Relationship="MichelinModel.FK_Order_Product" FromRole="Product" ToRole="Order" />
+    <NavigationProperty Name="ProductType" Relationship="MichelinModel.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
+  </EntityType>
+  <EntityType Name="ProductType">
+    <Key>
+      <PropertyRef Name="ID_ProductType" />
+    </Key>
+    <Property Name="ID_ProductType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Wear" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="Product" Relationship="MichelinModel.FK_Product_ProductType" FromRole="ProductType" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="ID_Registration" />
+    </Key>
+    <Property Name="ID_Registration" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Organization" Relationship="MichelinModel.FK_Organization_Registration" FromRole="Registration" ToRole="Organization" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_ClientFromOrganization_Organization">
+    <End Type="MichelinModel.Organization" Role="Organization" Multiplicity="1" />
+    <End Type="MichelinModel.ClientFromOrganization" Role="ClientFromOrganization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="ID_Organization" />
+      </Principal>
+      <Dependent Role="ClientFromOrganization">
+        <PropertyRef Name="id_Organization" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_ClientFromOrganization">
+    <End Type="MichelinModel.ClientFromOrganization" Role="ClientFromOrganization" Multiplicity="1" />
+    <End Type="MichelinModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClientFromOrganization">
+        <PropertyRef Name="ID_Client" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="id_Client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Product">
+    <End Type="MichelinModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="MichelinModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID_Product" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="id_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Organization_Registration">
+    <End Type="MichelinModel.Registration" Role="Registration" Multiplicity="1" />
+    <End Type="MichelinModel.Organization" Role="Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Registration">
+        <PropertyRef Name="ID_Registration" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="id_Registration" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ProductType">
+    <End Type="MichelinModel.ProductType" Role="ProductType" Multiplicity="1" />
+    <End Type="MichelinModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductType">
+        <PropertyRef Name="ID_ProductType" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="id_ProductType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

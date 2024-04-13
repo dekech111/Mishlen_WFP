@@ -1,0 +1,59 @@
+﻿<Window x:Class="Mishlen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mishlen"
+        mc:Ignorable="d"
+        Title="Продажа товаров Мишлен" Height="500" Width="1000" Icon="/Resource/Logo.png"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="51*"/>
+            <RowDefinition Height="433*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="21*"/>
+        </Grid.ColumnDefinitions>
+
+        <Frame Grid.RowSpan="2" Background="#FF27509B"/>
+        <Frame Grid.Column="1" Grid.RowSpan="2">
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF3772DC"/>
+                    <GradientStop Color="#FF2F61BB" Offset="1"/>
+                </LinearGradientBrush>
+            </Frame.Background>
+        </Frame>
+
+
+        <!--Разметка названия страниц-->
+        <TextBlock Text="{Binding ElementName=FrmMain, Path=Content.Title}" Grid.Column="1"
+                       HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="24" Style="{StaticResource Text}"/>
+
+        <!--Разметка рабочей области-->
+        <Image Source="/Resource/Icon.png" Opacity="0.1" Grid.Column="1" Grid.Row="1" />
+        <Frame x:Name="FrmMain" NavigationUIVisibility="Hidden" 
+               Grid.Column="1" Grid.Row="1"/>
+
+
+        <!--разметка кнопок-->
+        <StackPanel  x:Name="spMenu" Grid.Row="1"
+                    x:FieldModifier="public">
+            <Button Height="50" Content="Заказы" x:Name="ButtonOrders"
+                    Click="ButtonOrders_Click"/>
+            <Button Height="50" Content="Клиенты" x:Name="ButtonClients"
+                    Click="ButtonClients_Click"/>
+            <Button Height="50" Content="Товары на складе" x:Name="ButtonProducts"
+                    Click="ButtonProducts_Click"/>
+        </StackPanel>
+
+
+        <Button Height="50" Content="Добавление" x:Name="ButtonSettings" Grid.Row="1"
+                    VerticalAlignment="Bottom" Click="ButtonSettings_Click"/>
+
+    </Grid>
+</Window>

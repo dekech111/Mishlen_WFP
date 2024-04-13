@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="468c968f59974c5384b3fd842afac70e" Name="Diagram1">
+        <EntityTypeShape EntityType="MichelinModel.ClientFromOrganization" Width="1.5" PointX="3" PointY="4.75" />
+        <EntityTypeShape EntityType="MichelinModel.Order" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="MichelinModel.Organization" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="MichelinModel.Product" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="MichelinModel.ProductType" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="MichelinModel.Registration" Width="1.5" PointX="1.5" PointY="9.5" />
+        <EntityTypeShape EntityType="MichelinModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" />
+        <AssociationConnector Association="MichelinModel.FK_ClientFromOrganization_Organization" />
+        <AssociationConnector Association="MichelinModel.FK_Order_ClientFromOrganization" />
+        <AssociationConnector Association="MichelinModel.FK_Order_Product" />
+        <AssociationConnector Association="MichelinModel.FK_Organization_Registration" />
+        <AssociationConnector Association="MichelinModel.FK_Product_ProductType" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

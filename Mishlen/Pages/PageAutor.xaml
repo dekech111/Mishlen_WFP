@@ -1,0 +1,37 @@
+﻿<Page x:Class="Mishlen.Pages.PageAutor"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Mishlen.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Авторизация">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <TextBlock Text="Введите пароль" Margin="-10 0 0 0"
+                               Style="{StaticResource Text}"/>
+                    <PasswordBox x:Name="pbPass" Height="35" Width="300" 
+                                 PasswordChanged="pbPass_PasswordChanged"
+                                 HorizontalContentAlignment="Left"
+                                 VerticalContentAlignment="Center"
+                                 MaxLength="30"/>
+                    <TextBox Height="35" Width="300" x:Name="txbPass" 
+                                 Visibility="Collapsed"
+                                 HorizontalContentAlignment="Left"
+                                 VerticalContentAlignment="Center"/>
+                </StackPanel>
+
+                <Button x:Name="btneyes" Height="30" Margin="10 20 0 0"
+                        Background="{x:Null}" Click="btneyes_Click">
+                    <Image Source="/Resource/eyes.png"/>
+                </Button>
+            </StackPanel>
+            <Button Content="Войти" Height="35" Width="250" Margin="0 10 0 0 "
+                    x:Name="btnEnter" Click="btnEnter_Click" Background="#FF27509B"/>
+        </StackPanel>
+    </Grid>
+</Page>
